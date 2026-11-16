@@ -468,11 +468,12 @@ class X:
         return data["data"]["viewer"]["user_results"]["result"]
 
     def user(self, handle: str) -> dict:
-        data = self.gql("UserByScreenName", {"screen_name": handle.lstrip("@"), "withGrokTranslatedBio": False})
+        screen_name = handle.lstrip("@")
+        data = self.gql("UserByScreenName", {"screen_name": screen_name, "withGrokTranslatedBio": False})
         result = (data.get("data", {}).get("user") or {}).get("result")
         if not result or result.get("__typename") != "User":
             reason = (result or {}).get("reason") or "not found"
-            raise click.ClickException(f"@{handle.lstrip('@')}: {reason}")
+            raise click.ClickException(f"@{screen_name}: {reason}")
         return result
 
     def timeline(self, name: str, variables: dict, path: list[str], limit: int,
