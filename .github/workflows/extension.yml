@@ -1,0 +1,18 @@
+# Claude Desktop extension: a v* tag publishes x-cli.mcpb on its GitHub release.
+name: extension
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  extension:
+    permissions:
+      contents: write
+    uses: ClementWalter/mcp-bridge/.github/workflows/extension.yml@e567131892422e44067739dee0316234104f0352
+    with:
+      launcher: bin/x
+      bridge-ref: e567131892422e44067739dee0316234104f0352

@@ -1,0 +1,30 @@
+{
+  "display_name": "X (Twitter)",
+  "description": "Read your X likes, bookmarks, home feed, threads, profiles and search from Claude.",
+  "long_description": "Read-only: the extension never posts, likes or follows.\n\n1. Sign in at https://x.com in Google Chrome (or Arc, Brave or Edge) on this Mac.\n2. Ask Claude, for example: \"what did I bookmark on X this week?\" or \"summarize this thread: https://x.com/…\". The extension reads your X session from the browser.\n3. The first time, macOS may ask whether to allow access to \"Chrome Safe Storage\": click Always Allow.\n\nIf several X accounts are signed in, tell Claude which handle to use, or fill the Account setting of this extension.",
+  "platforms": [
+    "darwin"
+  ],
+  "env": {
+    "X_ACCOUNT": "${user_config.account}"
+  },
+  "user_config": {
+    "account": {
+      "type": "string",
+      "title": "X handle (optional)",
+      "description": "Only when several X accounts are signed in on this Mac: the handle to read as, without @.",
+      "sensitive": false,
+      "required": false,
+      "default": ""
+    }
+  },
+  "site": {
+    "group": "messages",
+    "rank": 50,
+    "needs": [
+      "An X account",
+      "Signed in at x.com in Chrome, Arc, Brave or Edge"
+    ],
+    "risk": "unofficial-api"
+  }
+}
